@@ -28,27 +28,27 @@
             <div>
                 <h3>Rex</h3>
                 <p>Cachorro, 2 anos, dócil e brincalhão.</p>
-                <button>Adotar</button>
+                    <a href="adotar.html"> <button>Adotar</button></a>
             </div>
             <div>
                 <h3>Mimi</h3>
                 <p>Gata, 1 ano, carinhosa e tranquila.</p>
-                <button>Adotar</button>
+                  <a href="adotar.html"> <button>Adotar</button></a>
             </div>
             <div>
                 <h3>Thor</h3>
                 <p>Cachorro, 3 anos, protetor e ativo.</p>
-                <button>Adotar</button>
+                    <a href="adotar.html"> <button>Adotar</button></a>
             </div>
             <div class="animal-extra" style="display:none;">
                 <h3>Luna</h3>
                 <p>Gata, 4 meses, brincalhona e curiosa.</p>
-                <button>Adotar</button>
+               <a href="adotar.html"> <button>Adotar</button></a>
             </div>
             <div class="animal-extra" style="display:none;">
                 <h3>Belinha</h3>
                 <p>Cachorra, 5 anos, calma e companheira.</p>
-                <button>Adotar</button>
+               <a href="adotar.html"> <button>Adotar</button></a>
             </div>
         
         </div>
@@ -112,16 +112,9 @@
             <h3>${animal.nome}</h3>
             <p>${animal.tipo}, ${animal.idade}, ${animal.descricao}</p>
             ${animal.foto ? `<img src="${animal.foto}" alt="${animal.nome}" style="max-width:120px;display:block;margin:8px auto;border-radius:8px;">` : ""}
-            <button class="btn-adotar">Adotar</button>
+                <a href="adotar.html"> <button>Adotar</button></a>
         `;
         grid.appendChild(div);
-    });
-
-    // Torna todos os botões "Adotar" clicáveis para ir para adotar.html
-    document.querySelectorAll('.btn-adotar, #animais button').forEach(btn => {
-        btn.onclick = function() {
-            window.location.href = "adotar.html";
-        };
     });
 };
 
