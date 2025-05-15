@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>entrar</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #f7f3ef;
+            color: #3e2723;
+            font-family: Arial, sans-serif;
+            padding-top: 120px;
+        }
+
+        .container {
+            background: #fff;
+            max-width: 400px;
+            margin: 40px auto 0 auto;
+            padding: 32px 28px 24px 28px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(101,67,33,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .container h1 {
+            color: #6d4c23;
+            font-size: 2rem;
+            margin-bottom: 18px;
+            text-align: center;
+            background: none;
+            padding: 0;
+        }
+
+        .container h2 {
+            font-size: 1.1rem;
+            margin: 12px 0 6px 0;
+            color: #3e2723;
+        }
+
+        .container input[type="text"],
+        .container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 6px;
+            border: 1px solid #bca18a;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: #f7f3ef;
+            color: #3e2723;
+            transition: border 0.2s;
+        }
+
+        .container input[type="text"]:focus,
+        .container input[type="password"]:focus {
+            border: 1.5px solid #6d4c23;
+            outline: none;
+        }
+
+        .container button {
+            background: #6d4c23;
+            color: #fff;
+            border: none;
+            padding: 12px 0;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 18px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .container button:hover {
+            background: #3e2723;
+        }
+
+        #alert {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #b71c1c;
+            min-height: 24px;
+        }
+
+        /* Para estilizar o campo de descrição e o campo de foto do animal */
+
+        /* Estilo para o campo de descrição */
+        #descriçao {
+            min-height: 60px;
+            resize: vertical;
+            font-size: 1rem;
+            padding: 10px;
+            border: 1px solid #bca18a;
+            border-radius: 5px;
+            background: #f7f3ef;
+            color: #3e2723;
+            margin-bottom: 12px;
+            transition: border 0.2s;
+        }
+
+        #descriçao:focus {
+            border: 1.5px solid #6d4c23;
+            outline: none;
+        }
+
+        /* Estilo para o campo de foto do animal */
+        #fotoanimal {
+            padding: 8px 0;
+            background: #f7f3ef;
+            border: none;
+            color: #3e2723;
+            margin-bottom: 18px;
+            font-size: 1rem;
+        }
+
+        #fotoanimal::-webkit-file-upload-button {
+            background: #6d4c23;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 18px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        #fotoanimal:hover::-webkit-file-upload-button {
+            background: #3e2723;
+        }
+
+        /* Para Firefox */
+        #fotoanimal::file-selector-button {
+            background: #6d4c23;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 18px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        #fotoanimal:hover::file-selector-button {
+            background: #3e2723;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                max-width: 98vw;
+                padding: 16px 4vw 16px 4vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>
+            <img src="fotos/Vj_quero_a_palavra_doe-pet_estilizada_com_as_letras__0e2b4ce2-5c4d-4d8a-8401-b20751ebdc5c.png" alt="Doe Pet" style="height:60px;">
+        </h1>
+        <nav>
+            <a href="sobre.html">Sobre</a>
+            <a href="criar_conta.html">cadastro</a>
+            <a href="entrar.html">entrar</a>
+            <a href="index.html">inicio</a>
+        </nav>
+    </header> 
+<br>
+<br>
+<br>
+    <div class="container" id="form-container">
+        <h1>ficha do animal</h1>
+        <h2>nome do animal</h2>
+        <input type="text" id="nomeanimal" placeholder="nome do animal">
+
+        <h2>nome do resposavel atual</h2>
+        <input type="text" id="nomehumano" placeholder="nome do resposavel atual">
+
+        <h2>idade do animal</h2>
+        <input type="number" id="idade" placeholder="idade do animal">
+
+        <h2>tipo do animal</h2>
+        <input type="text" id="tipo" placeholder="tipo de animal">
+
+        <h2>descriçao</h2>
+        <input type="text" id="descriçao" placeholder="descriçao do animal">
+
+        <h2>foto do animal</h2>
+        <input type="file" id="fotoanimal" accept="image/*">
+
+        <button onclick="validador()">doar</button>
+        <h3 id="alert"></h3>
+    </div>
+
+    <!-- Ficha de confirmação (inicialmente oculta) -->
+    <div class="container" id="ficha-container" style="display:none;">
+        <h1>Confirme os dados do animal</h1>
+        <h2>Nome do animal:</h2>
+        <p id="ficha-nomeanimal"></p>
+        <h2>Nome do responsável:</h2>
+        <p id="ficha-nomehumano"></p>
+        <h2>Idade:</h2>
+        <p id="ficha-idade"></p>
+        <h2>Tipo:</h2>
+        <p id="ficha-tipo"></p>
+        <h2>Descrição:</h2>
+        <p id="ficha-descricao"></p>
+        <h2>Foto:</h2>
+        <img id="ficha-foto" src="" alt="Foto do animal" style="max-width:200px;display:none;margin-bottom:15px;">
+        <br>
+        <button onclick="confirmarFicha()">Confirmar</button>
+        <button onclick="editarFicha()">Editar</button>
+    </div>
+
+    <script>
+        function validador() {
+            const nomeanimal = document.getElementById("nomeanimal").value.trim();
+            const nomehumano = document.getElementById("nomehumano").value.trim();
+            const idade = document.getElementById("idade").value.trim();
+            const tipo = document.getElementById("tipo").value.trim();
+            const descriçao = document.getElementById("descriçao").value.trim();
+            const fotoInput = document.getElementById("fotoanimal");
+            const alertDiv = document.getElementById("alert");
+
+            // Lista de palavras proibidas
+            const proibidas = ["desgraça","merda","porra","puta","puto","caralho","viado","veado","buceta","fdp","filho da puta","vagabunda","vagabundo","inferno","diabo","maldito","maldita","palhaço","retardado","babaca","cuzão","arrombado","bosta","tanso","imbecil","idiota","burro","corno","corna","satanás","capeta","corno manso","nojento","escroto","cadela","panaca","cabeça de bagre","merdinha","sem noção","anta","lixo","crápula"];
+
+            // Limpa mensagem anterior
+            alertDiv.textContent = "";
+
+            // Proibição de palavras no if
+            if (
+                proibidas.some(palavra => nomeanimal.toLowerCase().includes(palavra)) ||
+                proibidas.some(palavra => nomehumano.toLowerCase().includes(palavra)) ||
+                proibidas.some(palavra => tipo.toLowerCase().includes(palavra))
+            ) {
+                alertDiv.textContent = "Nome do animal ou do responsável inválido.";
+                return;
+            }
+
+            if (nomeanimal.length < 1) {
+                alertDiv.textContent = "Nome do animal inválido";
+                return;
+            }
+
+            if (nomehumano.length < 3) {
+                alertDiv.textContent = "Nome do responsável inválido";
+                return;
+            }
+            if (descriçao.length < 12) {
+                alertDiv.textContent = "Descrição muito curta";
+                return;
+            }
+
+            // Preenche a ficha de confirmação
+            document.getElementById("ficha-nomeanimal").textContent = nomeanimal;
+            document.getElementById("ficha-nomehumano").textContent = nomehumano;
+            document.getElementById("ficha-idade").textContent = idade;
+            document.getElementById("ficha-tipo").textContent = tipo;
+            document.getElementById("ficha-descricao").textContent = descriçao;
+
+            // Mostra a imagem escolhida, se houver
+            const fichaFoto = document.getElementById("ficha-foto");
+            if (fotoInput.files && fotoInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    fichaFoto.src = e.target.result;
+                    fichaFoto.style.display = "block";
+                };
+                reader.readAsDataURL(fotoInput.files[0]);
+            } else {
+                fichaFoto.style.display = "none";
+            }
+
+            // Mostra a ficha e esconde o formulário
+            document.getElementById("form-container").style.display = "none";
+            document.getElementById("ficha-container").style.display = "flex";
+        }
+
+        // Botão de editar: volta ao formulário
+        function editarFicha() {
+            document.getElementById("ficha-container").style.display = "none";
+            document.getElementById("form-container").style.display = "flex";
+        }
+
+        // Botão de confirmar: mostra mensagem de sucesso (ou envie para o servidor)
+        function confirmarFicha() {
+            // Pegue os dados do animal
+            const animal = {
+                nome: document.getElementById("ficha-nomeanimal").textContent,
+                tipo: document.getElementById("ficha-tipo").textContent,
+                idade: document.getElementById("ficha-idade").textContent,
+                descricao: document.getElementById("ficha-descricao").textContent,
+                foto: document.getElementById("ficha-foto").src // base64 da imagem
+            };
+
+            // Recupera lista atual ou cria nova
+            let animais = JSON.parse(localStorage.getItem("animais")) || [];
+            animais.push(animal);
+            localStorage.setItem("animais", JSON.stringify(animais));
+
+            // Mensagem de sucesso
+            document.getElementById("ficha-container").innerHTML = "<h2 style='color:#6d4c23;text-align:center;'>Cadastro confirmado com sucesso!</h2>";
+        }
+
+        if (localStorage.getItem("usuarioLogado") !== "true") {
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("form-container").style.display = "none";
+        document.getElementById("ficha-container").style.display = "none";
+        // Cria mensagem de bloqueio
+        const aviso = document.createElement("div");
+        aviso.className = "container";
+        aviso.innerHTML = "<h2 style='color:#b71c1c;text-align:center;'>Você precisa estar logado para doar um animal.<br><a href='entrar.html'>Clique aqui para entrar</a></h2>";
+        document.body.appendChild(aviso);
+    });
+}
+    </script>
+</body>
+</html>

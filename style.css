@@ -1,0 +1,173 @@
+/* Reset básico */
+body, h1, h2, h3, p, a, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f7f7f7;
+    color: #222;
+    padding-top: 100px; /* ajuste conforme a altura do seu header */
+}
+
+header {
+    background: url('fotos/Vagner_Jorge_faça_uma_imagem_formato\(nao_dimensoes\)_4x1_\,quero_40c1c6d2-17b1-4770-8de4-ce07093cbcab.png') center center/cover no-repeat;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+header h1 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alinha à esquerda */
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    margin-top: 0;
+    padding: 8px 32px;
+    border-radius: 12px;
+  
+    width: fit-content;
+    position: relative;
+    left: 0;
+}
+
+nav a {
+    color: #ffffff; /* preto */
+    background: rgba(101, 67, 33, 0.7); /* marrom translúcido */
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    padding: 8px 18px;
+    border-radius: 5px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    display: inline-block;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+nav a:hover,
+nav a:focus {
+    background: #6d4c23; /* marrom escuro */
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(109,76,35,0.15);
+}
+
+section {
+    margin: 30px auto;
+    max-width: 900px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+#animais h2 {
+    margin-bottom: 20px;
+}
+
+#animais {
+    padding-bottom: 10px;
+}
+
+/* Grid para os animais */
+#animais > div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+#animais > div > div {
+    background: #efebe9; /* marrom claro */
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0 1px 4px rgba(101,67,33,0.08);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#animais h3 {
+    margin-bottom: 8px;
+    color: #6d4c23; /* marrom escuro */
+}
+
+#animais p {
+    margin-bottom: 12px;
+}
+
+#animais button {
+    background: #6d4c23; /* marrom escuro */
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.2s;
+}
+
+#animais button:hover {
+    background: #3e2723; /* marrom ainda mais escuro */
+}
+
+footer {
+    text-align: center;
+    padding: 18px 0;
+    background: #6d4c23; /* marrom escuro */
+    color: #fff;
+    margin-top: 40px;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Botão verde */
+.btn-verde {
+    background: #388e3c !important; /* verde */
+    color: #fff !important;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-verde:hover {
+    background: #256029 !important; /* verde mais escuro */
+}
+
+/* Botão sair igual aos outros botões do menu */
+#btn-sair {
+    background: #6d4c23;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#btn-sair:hover {
+    background: #3e2723;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    section {
+        padding: 10px;
+    }
+    #animais > div {
+        grid-template-columns: 1fr;
+    }
+}

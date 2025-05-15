@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoção de Animais</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>
+            <img src="fotos/Vj_quero_a_palavra_doe-pet_estilizada_com_as_letras__0e2b4ce2-5c4d-4d8a-8401-b20751ebdc5c.png" alt="Doe Pet" style="height:60px;">
+        </h1>
+        <nav>
+          
+            <a href="#sobre">Sobre</a>
+            <a href="criar_conta.html">criar conta</a>
+            <a href="entrar.html">entre</a>
+            <a href="doe.html">doe</a>
+          
+        </nav>
+    </header>
+<br>
+<br>
+    <section id="animais">
+        <h2>Animais Disponíveis</h2>
+        <div>
+            <div>
+                <h3>Rex</h3>
+                <p>Cachorro, 2 anos, dócil e brincalhão.</p>
+                <button>Adotar</button>
+            </div>
+            <div>
+                <h3>Mimi</h3>
+                <p>Gata, 1 ano, carinhosa e tranquila.</p>
+                <button>Adotar</button>
+            </div>
+            <div>
+                <h3>Thor</h3>
+                <p>Cachorro, 3 anos, protetor e ativo.</p>
+                <button>Adotar</button>
+            </div>
+            <div class="animal-extra" style="display:none;">
+                <h3>Luna</h3>
+                <p>Gata, 4 meses, brincalhona e curiosa.</p>
+                <button>Adotar</button>
+            </div>
+            <div class="animal-extra" style="display:none;">
+                <h3>Belinha</h3>
+                <p>Cachorra, 5 anos, calma e companheira.</p>
+                <button>Adotar</button>
+            </div>
+        
+        </div>
+        <button id="mostrar-mais-animais" style="margin: 20px auto; display: block;">Mostrar mais animais</button>
+        <button id="mostrar-menos-animais" style="margin: 20px auto; display: none;">Mostrar menos</button>
+    </section>
+
+    <section id="sobre">
+        <h2>Sobre Nós</h2>
+        <p>Somos uma ONG dedicada a encontrar lares amorosos para animais resgatados.</p>
+    <a href="sobre.html">mais sobre</a>
+    </section>
+
+    <section id="contato">
+        <h2>Contato</h2>
+        <p>Email: contato@adocaoanimais.com</p>
+        <p>Telefone: (11) 99999-9999</p>
+    </section>
+
+
+
+    <footer>
+        <p>&copy; 2025 Adoção de Animais</p>
+    </footer>
+
+    <script>
+    // Mostra mais animais ao clicar no botão "Mostrar mais animais"
+    const btnMais = document.getElementById('mostrar-mais-animais');
+    const btnMenos = document.getElementById('mostrar-menos-animais');
+    const extras = document.querySelectorAll('.animal-extra');
+
+    if (btnMais) {
+        btnMais.onclick = function() {
+            extras.forEach(function(div) {
+                div.style.display = 'flex';
+            });
+            btnMais.style.display = 'none';
+            if (btnMenos) btnMenos.style.display = 'block';
+        };
+    }
+
+    if (btnMenos) {
+        btnMenos.onclick = function() {
+            extras.forEach(function(div) {
+                div.style.display = 'none';
+            });
+            btnMenos.style.display = 'none';
+            if (btnMais) btnMais.style.display = 'block';
+        };
+    }
+
+    window.onload = function() {
+    const animais = JSON.parse(localStorage.getItem("animais")) || [];
+    const grid = document.querySelector("#animais > div");
+    if (!grid) return;
+
+    animais.forEach(animal => {
+        // Cria o bloco do animal
+        const div = document.createElement("div");
+        div.innerHTML = `
+            <h3>${animal.nome}</h3>
+            <p>${animal.tipo}, ${animal.idade}, ${animal.descricao}</p>
+            ${animal.foto ? `<img src="${animal.foto}" alt="${animal.nome}" style="max-width:120px;display:block;margin:8px auto;border-radius:8px;">` : ""}
+            <button class="btn-adotar">Adotar</button>
+        `;
+        grid.appendChild(div);
+    });
+
+    // Torna todos os botões "Adotar" clicáveis para ir para adotar.html
+    document.querySelectorAll('.btn-adotar, #animais button').forEach(btn => {
+        btn.onclick = function() {
+            window.location.href = "adotar.html";
+        };
+    });
+};
+
+document.addEventListener("DOMContentLoaded", function() {
+    const usuarioLogado = localStorage.getItem("usuarioLogado") === "true";
+    const btnEntrar = document.querySelector('a[href="entrar.html"]');
+    const btnCadastrar = document.querySelector('a[href="criar_conta.html"]');
+    const nav = document.querySelector("nav");
+
+    // Cria o botão "Ver Perfil" se não existir
+    let btnPerfil = document.getElementById("btn-perfil");
+    if (!btnPerfil) {
+        btnPerfil = document.createElement("a");
+        btnPerfil.href = "perfil.html";
+        btnPerfil.id = "btn-perfil";
+        btnPerfil.textContent = "ver perfil";
+        btnPerfil.style.marginLeft = "10px";
+        btnPerfil.style.background = "#6d4c23";
+        btnPerfil.style.color = "#fff";
+        btnPerfil.style.padding = "8px 18px";
+        btnPerfil.style.borderRadius = "5px";
+        btnPerfil.style.textDecoration = "none";
+        btnPerfil.style.fontWeight = "bold";
+    }
+
+    // Cria o botão "Sair" se não existir
+    let btnSair = document.getElementById("btn-sair");
+    if (!btnSair) {
+        btnSair = document.createElement("button");
+        btnSair.id = "btn-sair";
+        btnSair.textContent = "sair";
+        btnSair.style.marginLeft = "10px";
+        btnSair.style.background = "#b71c1c";
+        btnSair.style.color = "#fff";
+        btnSair.style.padding = "8px 18px";
+        btnSair.style.borderRadius = "5px";
+        btnSair.style.fontWeight = "bold";
+        btnSair.style.border = "none";
+        btnSair.style.cursor = "pointer";
+        btnSair.onclick = function() {
+            localStorage.removeItem("usuarioLogado");
+            window.location.href = "entrar.html";
+        };
+    }
+
+    if (usuarioLogado) {
+        if (btnEntrar) btnEntrar.style.display = "none";
+        if (btnCadastrar) btnCadastrar.style.display = "none";
+        if (nav && !document.getElementById("btn-perfil")) nav.appendChild(btnPerfil);
+        if (nav && !document.getElementById("btn-sair")) nav.appendChild(btnSair);
+    } else {
+        if (btnEntrar) btnEntrar.style.display = "";
+        if (btnCadastrar) btnCadastrar.style.display = "";
+        if (btnPerfil && nav.contains(btnPerfil)) nav.removeChild(btnPerfil);
+        if (btnSair && nav.contains(btnSair)) nav.removeChild(btnSair);
+    }
+});
+    </script>
+</body>
+</html>
